@@ -18,7 +18,7 @@ section {
   border-radius: 8px;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 16px;
   gap: 10px;
   /* background-color: #32becb; */
   color: rgba(255, 255, 255);
