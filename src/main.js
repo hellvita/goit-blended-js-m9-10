@@ -1,4 +1,5 @@
 import { refs } from './js/refs';
+import * as storage from './js/local-storage-api';
 
 /*
   Створи список справ.
