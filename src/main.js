@@ -1,5 +1,6 @@
 import { refs } from './js/refs';
 import * as storage from './js/local-storage-api';
+import * as taskList from './js/tasks';
 
 /*
   Створи список справ.
