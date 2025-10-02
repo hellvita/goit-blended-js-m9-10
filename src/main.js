@@ -4,19 +4,47 @@ import * as taskList from './js/tasks';
 import * as render from './js/render-tasks';
 import { initTheme, toggleTheme } from './js/theme-switcher';
 
-/*
-  Створи список справ.
-  На сторінці є два інпути які має вводиться назва і текст задачі.
-  Після натискання на кнопку "Add" завдання додається до списку #task-list.
+initTheme();
 
-  У кожної картки має бути кнопка "Delete", щоб можна було
-  прибрати завдання зі списку.
-  Список із завданнями має бути доступним після перезавантаження сторінки.
+const stored = storage.loadTasks();
+taskList.setTasks(stored);
+render.renderAll(taskList.getTasks());
 
-  Розмітка картки задачі
-  <li class="task-list-item">
-      <button class="task-list-item-btn">Delete</button>
-      <h3>Заголовок</h3>
-      <p>Текст</p>
-  </li>
-*/
+refs.addBtn.addEventListener('click', onAdd);
+refs.inputName.addEventListener('keydown', onEnter);
+
+refs.taskList.addEventListener('click', onDelete);
+
+refs.themeToggle.addEventListener('click', () => toggleTheme());
+
+function onAdd(e) {
+  e.preventDefault();
+  try {
+    const title = refs.inputName.value;
+    const description = refs.inputDescription.value;
+    const task = taskList.addTask({ title, description });
+    storage.saveTasks(taskList.getTasks());
+    render.appendTask(task);
+    refs.form.reset();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function onEnter(e) {
+  if (e.key === 'Enter') onAdd(e);
+}
+
+function onDelete(e) {
+  if (e.target.nodeName === 'BUTTON') {
+    const button = e.target;
+    const li = button.closest('.task-list-item');
+    const id = li.dataset.id;
+    if (!id) return;
+    const removed = taskList.deleteTask(id);
+    if (removed) {
+      storage.saveTasks(taskList.getTasks());
+      render.removeByID(id);
+    }
+  }
+}

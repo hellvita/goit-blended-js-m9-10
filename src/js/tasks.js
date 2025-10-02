@@ -7,8 +7,8 @@ export function initTasks(initial = []) {
 }
 
 export function addTask({ title, description }) {
-  const trimmed = (title || '').trm();
-  if (!trimmed) return alert('Title is required');
+  const trimmed = (title || '').trim();
+  if (!trimmed) return alert('Title is required!');
   const task = {
     id: genID(),
     title: trimmed,
