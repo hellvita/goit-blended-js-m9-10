@@ -10,8 +10,7 @@ const stored = storage.loadTasks();
 taskList.setTasks(stored);
 render.renderAll(taskList.getTasks());
 
-refs.addBtn.addEventListener('click', onAdd);
-refs.inputName.addEventListener('keydown', onEnter);
+refs.form.addEventListener('submit', onAdd);
 
 refs.taskList.addEventListener('click', onDelete);
 
@@ -29,10 +28,6 @@ function onAdd(e) {
   } catch (err) {
     console.log(err);
   }
-}
-
-function onEnter(e) {
-  if (e.key === 'Enter') onAdd(e);
 }
 
 function onDelete(e) {
