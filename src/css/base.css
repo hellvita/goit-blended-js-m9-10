@@ -1,5 +1,6 @@
 section {
   padding-top: 30px;
+  width: 100%;
 }
 
 .tasks-list {
@@ -12,7 +13,7 @@ section {
 
 .task-list-item {
   display: flex;
-  width: calc((100% - 15px) / 2);
+  width: 100%;
   background-color: #fdfdfd;
   border: 1px solid #00f;
   border-radius: 8px;
@@ -39,6 +40,12 @@ section {
   color: #fdfdfd;
   background-color: #ff6b0a;
   transform: scale(1.08);
+}
+
+@media only screen and (min-width: 375px) {
+  .task-list-item {
+    width: calc((100% - 15px) / 2);
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -88,13 +95,15 @@ body.theme-dark .task-list-item {
 .theme-toggle-button {
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  padding: 12px 24px;
+  left: 20px;
+  /* padding: 12px 24px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: bold; */
+  width: 28px;
+  aspect-ratio: 1;
   cursor: pointer;
   border: none;
-  border-radius: 8px;
+  border-radius: 100%;
   transition: all 0.3s ease-in-out;
 }
 
