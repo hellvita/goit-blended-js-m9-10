@@ -9,6 +9,7 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
+    base: '/goit-blended-js-m9-10/',
     root: 'src',
     build: {
       sourcemap: true,
