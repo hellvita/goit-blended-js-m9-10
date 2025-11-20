@@ -6,6 +6,7 @@ import { initTheme, toggleTheme } from './js/theme-switcher';
 
 initTheme();
 
+storage.setDefaultTasks();
 const stored = storage.loadTasks();
 taskList.setTasks(stored);
 render.renderAll(taskList.getTasks());

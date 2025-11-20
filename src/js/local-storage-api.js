@@ -1,5 +1,7 @@
-const TASKS_KEY = 'tasks';
-const THEME_KEY = 'theme';
+import { TASKS_KEY, THEME_KEY, TASK_EXAMPLE } from './constant';
+import * as storage from './local-storage-api';
+import * as taskList from './tasks';
+import * as render from './render-tasks';
 
 export function saveTasks(tasks) {
   try {
@@ -27,4 +29,19 @@ export function saveTheme(theme) {
 
 export function loadTheme() {
   return localStorage.getItem(THEME_KEY) || null;
+}
+
+export function setDefaultTasks() {
+  let tempTasks = JSON.parse(localStorage.getItem(TASKS_KEY)) || [];
+
+  if (tempTasks.length === 0) {
+    tempTasks = TASK_EXAMPLE;
+    tempTasks.forEach(temp_task => {
+      const title = temp_task.title;
+      const description = temp_task.description;
+      const task = taskList.addTask({ title, description });
+      storage.saveTasks(taskList.getTasks());
+      render.appendTask(task);
+    });
+  }
 }
